@@ -45,7 +45,6 @@ Scikit-learn
 Install the required packages using pip:
 
 bash
-Copy code
 pip install pandas numpy matplotlib seaborn scikit-learn
 Code Walkthrough
 Data Visualization
@@ -64,7 +63,6 @@ Train-Test Split
 We split the dataset into training (70%) and testing (30%) sets using train_test_split from Scikit-learn.
 
 python
-Copy code
 X = iris.drop('species', axis=1)
 y = iris['species']
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.30)
@@ -72,7 +70,6 @@ Model Training
 The SVM model is trained using the training data:
 
 python
-Copy code
 from sklearn.svm import SVC
 svc_model = SVC()
 svc_model.fit(X_train, y_train)
@@ -80,7 +77,6 @@ Model Evaluation
 Predictions are made on the test set, and we evaluate the model using the confusion matrix and classification report.
 
 python
-Copy code
 predictions = svc_model.predict(X_test)
 print(confusion_matrix(y_test, predictions))
 print(classification_report(y_test, predictions))
@@ -88,14 +84,12 @@ Hyperparameter Tuning
 We apply GridSearchCV to optimize the C and gamma hyperparameters for the SVM model.
 
 python
-Copy code
 param_grid = {'C': [0.1, 1, 10, 100], 'gamma': [1, 0.1, 0.01, 0.001]}
 grid = GridSearchCV(SVC(), param_grid, refit=True, verbose=2)
 grid.fit(X_train, y_train)
 After tuning, we evaluate the model again:
 
 python
-Copy code
 grid_predictions = grid.predict(X_test)
 print(confusion_matrix(y_test, grid_predictions))
 print(classification_report(y_test, grid_predictions))
@@ -103,7 +97,6 @@ Results
 The final model achieves 98% accuracy on the test set. Below is the classification report after hyperparameter tuning:
 
 markdown
-Copy code
                  precision    recall  f1-score   support
 
     Iris-setosa       1.00      1.00      1.00        16
